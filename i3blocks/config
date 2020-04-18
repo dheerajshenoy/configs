@@ -1,0 +1,16 @@
+#Widget to show date and time 
+#[Date and Time]
+#command=echo $(date '+%I:%M %p')
+#interval=60
+
+#Widget to display battery icon
+[Battery Widget]
+command=xfce4-power-manager
+interval=60
+
+#Widget to display speaker module
+[Speaker Widget]
+command=pasystray
+interval=60
+
+

@@ -1,0 +1,213 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+
+;==========================================================
+
+[colors]
+#background = ${xrdb:color0:#222}
+#background = #222
+#background = #1b262c
+#background = #323232
+background = #000
+background-alt = #444
+;foreground = ${xrdb:color7:#222}
+foreground = #dfdfdf
+foreground-alt = #555
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+
+[bar/dbar]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 28
+;offset-x = 1%
+;offset-y = 1%
+radius = 0.0
+fixed-center = true
+
+bottom = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #ffffff
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 0
+module-margin-right = 0
+
+#font-0 = unifont:fontformat=truetype:size=8:weight=bold:antialias=false;0
+font-0 = "Font Awesome 5 Free:size=14:style=Solid:pixelsize=11;1"
+font-1 = "HackNerdFont:size=14:pixelsize=10;1"
+font-2 = "Font Awesome 5 Brands:pixelsize=8;
+
+modules-left = i3
+modules-center = date 
+modules-right = battery pulseaudio memory 
+;blaudio wifi
+tray-position = right
+tray-padding = 2
+;tray-background = #0063ff
+
+;wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+
+format-padding = 3
+format-underline = #ffffff
+
+;[module/blaudio]
+;type = internal/pasystry
+
+;[module/wifi]
+;type = internal/nm-applet
+
+;[module/bluetooth]
+;type = custom/script
+;exec = sudo systemctl start bluetooth.service && bluetooth-manager
+
+[module/spotify-widget]
+type = custom/script 
+format-prefix = " "  
+format = <label>
+exec = spotify-now -i " %artist - %title" -p "Paused" -e "...." 
+label = %output%
+interval = 1
+click-middle = ~/scripts/spotify-script.sh Toggle
+click-left = ~/scripts/spotify-script.sh Previous
+click-right = ~/scripts/spotify-script.sh Next 
+#format-underline = #21bf73 
+format-prefix-padding = 1
+label-padding = 2
+
+[module/battery]
+type = custom/script 
+format-prefix = " "
+format = <label>
+exec = acpi | awk '{print $4}' | sed 's/\%//'
+click-right = exec xfce4-power-manager-settings &
+format-padding = 3 
+format-prefix-padding = 1
+format-prefix-foreground = #FFEC00
+
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
+
+label-mode-padding = 3
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; focused = Active workspace on focused monitor
+label-focused = %index%
+label-focused-underline = #494949 
+label-focused-background = #494949
+label-focused-foreground = #ffffff
+label-focused-padding = 2
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %index%
+label-unfocused-padding = 2
+
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-background = #ff5722
+label-urgent-padding = 2
+
+; Separator in between workspaces
+; label-separator = |
+
+
+[module/memory]
+type = internal/memory
+interval = 2
+format = <label>
+format-prefix = " "
+label = %percentage_used%%
+click-right = exec htop &
+format-prefix-foreground = ${colors.primary} 
+format-padding = 2
+format-prefix-padding = 1
+format-background = ${colors.background}
+
+[module/date]
+type = internal/date
+interval = 5
+format-padding = 2
+date = 
+date-alt = " %d-%m-%Y %A"
+
+time = %I:%M
+time-alt = %I:%M
+
+format-prefix = " "
+format-prefix-foreground = "#ffffff"
+format-background = $(background) 
+label = %date% %time%
+
+[module/pulseaudio]
+
+type = internal/pulseaudio
+format-volume = <label-volume> 
+format-volume-prefix = "  "
+label-volume = %percentage%%
+label-volume-foreground = ${root.foreground}
+format-volume-padding = 2
+label-muted =  Muted
+label-muted-foreground = #eb4559
+format-volume-prefix-foreground = #21bf73
+click-right = exec pavucontrol &
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+; vim:ft=dosini
