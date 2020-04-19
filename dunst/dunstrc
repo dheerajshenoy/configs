@@ -54,7 +54,7 @@
     separator_height = 2
 
     # Padding between text and separator.
-    padding = 30
+    padding = 10
 
 
     # Horizontal padding.
@@ -164,7 +164,7 @@
     icon_position = left
 
     # Scale larger icons down to this size, set to 0 to disable
-    max_icon_size = 32
+    max_icon_size = 90
 
     # Paths to default icons.
     icon_path = /usr/share/icons/Papirus-Light/24x24/panel/:/usr/share/icons/Papirus-Light/24x24/devices/:/usr/share/icons/Papirus-Light/24x24/apps:/usr/share/icons/Papirus-Light/24x24/actions 
