@@ -1,0 +1,66 @@
+
+URxvt.font: xft:Hack Nerd Font Mono:Regular:size=12:antialias=true
+URxvt*scrollBar: false
+URxvt*termname:unicode-256code
+URxvt*scrollBar_right: false
+URxvt*scrollBar_floating: false
+URxvt*scrollTtyOutput:  false
+URxvt*perl-ext:
+URxvt*perl-ext-common: default,clipboard,url-select,keyboard-select,resize-font
+URxvt.internalBorder: 17
+URxvt.cursorBlink: true
+URxvt.saveline: 2048
+URxvt.iso14755: false
+URxvt.clipboard.autocopy: true
+
+URxvt.resize-font.smaller: C-j
+URxvt.resize-font.bigger: C-k
+
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
+
+URxvt.keysym.Control-Left:  \033[1;5D
+URxvt.keysym.Control-Right: \033[1;5C
+URxvt.keysym.Control-Up:    \033[1;5A
+URxvt.keysym.Control-Down:  \033[1;5B
+
+! special
+*.foreground:   #ffffff
+*.background:   #000000
+*.cursorColor:  #ffffff
+
+! black
+*.color0:       #808080
+*.color8:       #9c9c9c
+
+! red
+*.color1:       #c48980
+*.color9:       #a15048
+
+! green
+*.color2:       #8da862
+*.color10:      #4b7508
+
+! yellow
+*.color3:       #b29b7a
+*.color11:      #916f27
+
+! blue
+*.color4:       #809bc4
+*.color12:      #567cb0
+
+! magenta
+*.color5:       #aa88b2
+*.color13:      #964e8f
+
+! cyan
+*.color6:       #82adad
+*.color14:      #4e848a
+
+! white
+*.color7:       #bfbfbf
+*.color15:      #9c9c9c
+

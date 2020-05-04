@@ -6,7 +6,7 @@
 
 # find your resolution so images can be resized to match your screen resolution
 res=$(xdpyinfo | grep dimensions | sed -r 's/^[^0-9]*([0-9]+x[0-9]+).*$/\1/')
-locktext='Type password to unlock...'
+locktext=''
 
 
 init_filenames() {
@@ -30,7 +30,7 @@ init_filenames() {
 	    verifcolor=ffffffff
 	    timecolor=ffffffff
 	    datecolor=ffffffff
-	    loginbox=00000066
+	    loginbox=ffffffff
 	fi
 
 	# create folder in ~/.cache/i3lock directory
@@ -78,18 +78,18 @@ lock() {
 
 	i3lock \
 		-t -i "$1" \
-		--timepos='x+85:h-70' \
-		--datepos='x+40:h-45' \
-		--timestr='%H:%M' \
-		--time-font='Source Code Variable' \
+		--timepos='x+683:h-30' \
+		--datepos='x+683:h-60' \
+		--timestr='%I:%M' \
+		--time-font='Noto Sans Regular' \
 		--clock --date-align 1 --datestr "$locktext" \
 		--insidecolor=$insidecolor --ringcolor=$ringcolor --line-uses-inside \
 		--keyhlcolor=$keyhlcolor --bshlcolor=$bshlcolor --separatorcolor=$separatorcolor \
 		--insidevercolor=$insidevercolor --insidewrongcolor=$insidewrongcolor \
-		--ringvercolor=$ringvercolor --ringwrongcolor=$ringwrongcolor --indpos='x+280:h-70' \
+		--ringvercolor=$ringvercolor --ringwrongcolor=$ringwrongcolor --indpos='x+683:h-120' \
 		--radius=20 --ring-width=4 --veriftext='' --wrongtext='' \
 		--verifcolor="$verifcolor" --timecolor="$timecolor" --datecolor="$datecolor" \
-		--noinputtext='' --force-clock $lockargs
+		--noinputtext='' --pass-media-keys --force-clock $lockargs
 }
 
 
@@ -163,15 +163,6 @@ update() {
 
 	# default blur level; fallback to 1
 	[[ $blur_level ]] || blur_level=1
-
-	rectangles=" "
-	SR=$(xrandr --query | grep ' connected' | grep -o '[0-9][0-9]*x[0-9][0-9]*[^ ]*')
-	for RES in $SR; do
-		SRA=(${RES//[x+]/ })
-		CX=$((${SRA[2]} + $(logical_px 25)))
-		CY=$((${SRA[1]} - $(logical_px 30)))
-		rectangles+="rectangle $CX,$CY $((CX+$(logical_px 300))),$((CY-$(logical_px 80))) "
-	done
 
 	# User supplied Image
 	user_image="$folder/user_image.png"

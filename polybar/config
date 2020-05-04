@@ -15,7 +15,7 @@
 #background = #222
 #background = #1b262c
 #background = #323232
-background = #000
+background = #1B2422 
 background-alt = #444
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
@@ -33,7 +33,7 @@ height = 28
 radius = 0.0
 fixed-center = true
 
-bottom = false
+bottom = true 
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -48,16 +48,18 @@ padding-left = 0
 padding-right = 0
 
 module-margin-left = 0
-module-margin-right = 0
+module-margin-ight = 0
 
-#font-0 = unifont:fontformat=truetype:size=8:weight=bold:antialias=false;0
-font-0 = "Font Awesome 5 Free:size=14:style=Solid:pixelsize=11;1"
-font-1 = "HackNerdFont:size=14:pixelsize=10;1"
-font-2 = "Font Awesome 5 Brands:pixelsize=8;
+;font-0 = "Font Awesome 5 Free:size=14:style=Solid:pixelsize=11;1"
+;font-1 = "HackNerdFont:size=14:pixelsize=10;1"
+;font-2 = "Font Awesome 5 Brands:pixelsize=8;
+
+font-0 = Roboto:weight=Regular:size=11;1
+font-1 = Material Icons:size=15;4
+font-2 = NotoSans Nerd Font:size=14:style=Regular:pixelsize=15;1
 
 modules-left = i3
-modules-center = date 
-modules-right = battery pulseaudio memory 
+modules-right = battery pulseaudio memory date 
 ;blaudio wifi
 tray-position = right
 tray-padding = 2
@@ -65,9 +67,7 @@ tray-padding = 2
 
 ;wm-restack = bspwm
 ;wm-restack = i3
-
 ;override-redirect = true
-
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
 
@@ -91,30 +91,15 @@ format-underline = #ffffff
 ;type = custom/script
 ;exec = sudo systemctl start bluetooth.service && bluetooth-manager
 
-[module/spotify-widget]
-type = custom/script 
-format-prefix = " "  
-format = <label>
-exec = spotify-now -i " %artist - %title" -p "Paused" -e "...." 
-label = %output%
-interval = 1
-click-middle = ~/scripts/spotify-script.sh Toggle
-click-left = ~/scripts/spotify-script.sh Previous
-click-right = ~/scripts/spotify-script.sh Next 
-#format-underline = #21bf73 
-format-prefix-padding = 1
-label-padding = 2
-
 [module/battery]
 type = custom/script 
-format-prefix = " "
+format-prefix = "bat: "
 format = <label>
-exec = acpi | awk '{print $4}' | sed 's/\%//'
+exec = acpi | awk '{print $4}' | sed 's/,//'
 click-right = exec xfce4-power-manager-settings &
 format-padding = 3 
 format-prefix-padding = 1
 format-prefix-foreground = #FFEC00
-
 
 [module/xwindow]
 type = internal/xwindow
@@ -125,44 +110,48 @@ type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
-
-; Only show workspaces on the same output as the bar
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 10;
 ;pin-workspaces = true
 
-label-mode-padding = 3
+label-mode-padding = 2
 label-mode-foreground = #000
 label-mode-background = ${colors.primary}
 
-; focused = Active workspace on focused monitor
 label-focused = %index%
-label-focused-underline = #494949 
-label-focused-background = #494949
-label-focused-foreground = #ffffff
+label-focused-underline = #DD2C2C
+;label-focused-overline = ${colors.background} 
+label-focused-background = #DD2C2C
 label-focused-padding = 2
-; unfocused = Inactive workspace on any monitor
+
 label-unfocused = %index%
 label-unfocused-padding = 2
 
-; visible = Active workspace on unfocused monitor
 label-visible = %index%
 label-visible-background = ${self.label-focused-background}
 label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
-; urgent = Workspace with urgency hint set
 label-urgent = %index%
 label-urgent-background = #ff5722
 label-urgent-padding = 2
 
-; Separator in between workspaces
-; label-separator = |
 
 
 [module/memory]
 type = internal/memory
 interval = 2
 format = <label>
-format-prefix = " "
+#format-prefix = " "
+format-prefix= ""
 label = %percentage_used%%
 click-right = exec htop &
 format-prefix-foreground = ${colors.primary} 
@@ -179,8 +168,9 @@ date-alt = " %d-%m-%Y %A"
 
 time = %I:%M
 time-alt = %I:%M
-
-format-prefix = " "
+format-prefix = " "
+format-prefix-font = 0
+format-prefix-overline = ${colors.background}
 format-prefix-foreground = "#ffffff"
 format-background = $(background) 
 label = %date% %time%
@@ -188,23 +178,25 @@ label = %date% %time%
 [module/pulseaudio]
 
 type = internal/pulseaudio
-format-volume = <label-volume> 
-format-volume-prefix = "  "
+format-volume = <ramp-volume>  <label-volume> 
 label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
 format-volume-padding = 2
-label-muted =  Muted
+label-muted = Muted
 label-muted-foreground = #eb4559
 format-volume-prefix-foreground = #21bf73
 click-right = exec pavucontrol &
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
 
 [settings]
-screenchange-reload = true
+;screenchange-reload = true
 ;compositing-background = xor
 ;compositing-background = screen
 ;compositing-foreground = source
 ;compositing-border = over
-;pseudo-transparency = false
+pseudo-transparency = true
 
 [global/wm]
 margin-top = 5
