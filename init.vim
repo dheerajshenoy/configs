@@ -31,7 +31,6 @@ call plug#begin()
 call plug#end()
 
 colorscheme spacedust
-highlight Normal guibg=None
 
 " Ctrl + Backspace to delete the previous word
 noremap! <C-BS> <C-w>
