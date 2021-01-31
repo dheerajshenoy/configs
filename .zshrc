@@ -6,6 +6,7 @@ autoload -U compinit
 compinit
 
 
+alias cat='bat'
 alias ..='cd ..'
 alias vim='nvim'
 alias v='nvim'
@@ -21,6 +22,7 @@ alias py='python'
 # DIR ALIAS
 alias pydir='cd ~/dheeraj/python/'
 alias cppdir='cd ~/dheeraj/cpp/'
+alias cdir='cd ~/dheeraj/c/'
 alias arddir='cd ~/dheeraj/arduino/'
 alias ddir='cd ~/.config/dwm'
 alias awdir='cd ~/.config/awesome'
