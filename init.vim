@@ -26,6 +26,7 @@ call plug#begin()
         Plug 'nvim-telescope/telescope.nvim'
         Plug 'neoclide/coc.nvim'
         Plug 'marcelbeumer/spacedust.vim'
+        Plug 'm-pilia/vim-ccls'
 
 
 call plug#end()
@@ -39,3 +40,4 @@ noremap! <C-h> <C-w>
 nnoremap <leader>h :vertical resize -5<CR>
 nnoremap <leader>l :vertical resize +5<CR>
 nnoremap <leader>s :source %<CR>
+
