@@ -11,6 +11,7 @@ skypeforlinux-stable-bin
 discord
 speedcrunch
 onlyoffice
+libreoffice
 neovim
 lxappearance
 xfce4-power-manager
@@ -19,7 +20,9 @@ volumeicon
 gimp
 inkscape
 pcmanfm
-alacritty-ligatures-git
+alacritty
+fira-mono-code (ligature support font)
+xmodmap (remap keys)
 BMZ-CURSOR
 ponymix
 pavucontrol
